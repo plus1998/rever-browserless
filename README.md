@@ -1,4 +1,5 @@
-_____                      ____
+---
+
 ```
 _____                      ____                                      
  |  __ \                    |  _ \                                     
@@ -11,6 +12,26 @@ _____                      ____
 ```
 
 这是一个基于 `Bun + Puppeteer + Browserless` 的反向连接方案。
+
+```
+[ USER ]          [ CLOUD HUB ]          [ LOCAL BRIDGE ]       [ BROWSER ]
+       |                    |                       |                    |
+       |  --- connect --->  |                       |                    |
+       |                    |  <--- register ----   |                    |
+       |                    |       (tunnel)        |                    |
+       |                    |                       |                    |
+       |  ==== START SESSION (Pairing Slot) ======  |                    |
+       |                    |                       |                    |
+       |  --- CDP Cmd --->  |  --- Forward ---->    |                    |
+       |                    |                       |  --- Connect --->  |
+       |                    |                       |  --- CDP Cmd --->  |
+       |                    |                       |                    |
+       |  <--- Data ------  |  <--- Forward ----    |  <--- Data ------  |
+       |                    |                       |                    |
+       |  ==== CLOSE SESSION (Auto Cleanup) ======  |                    |
+       |                    |                       |                    |
+       |  x-- disconnect --x|  x--- disconnect ---x |  x-- kill tab --x  |
+```
 
 核心特点：
 
