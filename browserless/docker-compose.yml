@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  # 浏览器执行环境
+  browserless:
+    image: ghcr.io/browserless/chromium:latest
+    restart: always
+    environment:
+      - TOKEN=${TOKEN}
+      # 即使我们通过 Client 动态传参，为了稳妥起见，镜像启动时也注入这些变量作为默认限制
+      - CONCURRENT=${CONCURRENT:-5}
+      - QUEUED=${QUEUED:-10}
+      - TIMEOUT=${TIMEOUT:-0}
+
+  # 反向连接客户端
+  frp-client:
+    build: .
+    restart: always
+    # 共享网络栈，确保 localhost:3000 通讯无阻
+    network_mode: "service:browserless"
+    environment:
+      - SERVER_URL=${SERVER_URL}
+      - TOKEN=${TOKEN}
+      - CONCURRENT=${CONCURRENT:-5}
+      - QUEUED=${QUEUED:-10}
+      - TIMEOUT=${TIMEOUT:-0}
+    depends_on:
+      - browserless
