@@ -1,11 +1,14 @@
+_____                      ____
+```
 _____                      ____                                      
  |  __ \                    |  _ \                                     
  | |__) |_____   _____ _ __| |_) |_ __ _____      _____  ___ _ __ ___ 
  |  _  // _ \ \ / / _ \ '__|  _ <| '__/ _ \ \ /\ / / __|/ _ \ '__/ __|
  | | \ \  __/\ V /  __/ |  | |_) | | | (_) \ V  V /\__ \  __/ |  \__ \
  |_|  \_\___| \_/ \___|_|  |____/|_|  \___/ \_/\_/ |___/\___|_|  |___/
-                                                                        
->> Reverse Browserless Tunneling System | Powered by Bun.js <<
+ 
+ >> Reverse Browserless Tunneling System | Powered by Bun.js <<
+```
 
 这是一个基于 `Bun + Puppeteer + Browserless` 的反向连接方案。
 
@@ -159,3 +162,4 @@ TOKEN=secret-token-changeme bun run server.ts
 cd /path/to/buyin-web-agent
 TOKEN=secret-token-changeme bun run test.ts
 ```
+
